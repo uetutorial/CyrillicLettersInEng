@@ -1,39 +1,39 @@
 #include <iostream>
 #include <fstream>  
 
-using namespace std; //использование namespace в таком формате для обучения std::
+using namespace std; //РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ namespace РІ С‚Р°РєРѕРј С„РѕСЂРјР°С‚Рµ РґР»СЏ РѕР±СѓС‡РµРЅРёСЏ std::
 
 /// <summary>
-/// Изучаю с++. Перехожу с блюпринтов в unreal engine на c++
-/// Эта программа читает английский алфавит из файла и оставляет буквы похожие на кириллицу
-/// Дано: ABCDEFGHIJKLMNOPQRSTUVWXYZ 
-/// Результат: ABCEHKMOPTX
+/// РР·СѓС‡Р°СЋ СЃ++. РџРµСЂРµС…РѕР¶Сѓ СЃ Р±Р»СЋРїСЂРёРЅС‚РѕРІ РІ unreal engine РЅР° c++
+/// Р­С‚Р° РїСЂРѕРіСЂР°РјРјР° С‡РёС‚Р°РµС‚ Р°РЅРіР»РёР№СЃРєРёР№ Р°Р»С„Р°РІРёС‚ РёР· С„Р°Р№Р»Р° Рё РѕСЃС‚Р°РІР»СЏРµС‚ Р±СѓРєРІС‹ РїРѕС…РѕР¶РёРµ РЅР° РєРёСЂРёР»Р»РёС†Сѓ
+/// Р”Р°РЅРѕ: ABCDEFGHIJKLMNOPQRSTUVWXYZ 
+/// Р РµР·СѓР»СЊС‚Р°С‚: ABCEHKMOPTX
 /// </summary>
 namespace tutorialue
 {
     class ReadFile
     {
-        string path_to_file{}; //путь к файлу
-        ifstream file_for_work{}; // читаем файл
+        string path_to_file{}; //РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+        ifstream file_for_work{}; // С‡РёС‚Р°РµРј С„Р°Р№Р»
     public:
-        ReadFile(string path) :path_to_file(path) {} // конструктор 
-        ifstream getFile() // получаем файл
+        ReadFile(string path) :path_to_file(path) {} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ 
+        ifstream getFile() // РїРѕР»СѓС‡Р°РµРј С„Р°Р№Р»
         {
             ifstream myfile(path_to_file);
             return myfile;
         }
         string OutSymbol()
         {
-            string sum_symbols{}; // строка для символов
+            string sum_symbols{}; // СЃС‚СЂРѕРєР° РґР»СЏ СЃРёРјРІРѕР»РѕРІ
             file_for_work = getFile();
             if (file_for_work.is_open())
             {
-                cout << "Файл открыт" << endl;
-                char one_file_symbol{}; // переменная для одного символа
+                cout << "Г”Г Г©Г« Г®ГІГЄГ°Г»ГІ" << endl;
+                char one_file_symbol{}; // РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РѕРґРЅРѕРіРѕ СЃРёРјРІРѕР»Р°
 
                 while (file_for_work.get(one_file_symbol))
                 {
-                    // РЕФАКТОРИНГ. пропускаем перенос строки. пока не знаю как сделать нормально
+                    // Р Р•Р¤РђРљРўРћР РРќР“. РїСЂРѕРїСѓСЃРєР°РµРј РїРµСЂРµРЅРѕСЃ СЃС‚СЂРѕРєРё. РїРѕРєР° РЅРµ Р·РЅР°СЋ РєР°Рє СЃРґРµР»Р°С‚СЊ РЅРѕСЂРјР°Р»СЊРЅРѕ
                     if (!(one_file_symbol == '\n'))
                     {
                         sum_symbols = sum_symbols + one_file_symbol;
@@ -47,7 +47,7 @@ namespace tutorialue
             }
             else
             {
-                string tempstr = "файл не найден, подключите файл " + path_to_file;
+                string tempstr = "С„Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ, РїРѕРґРєР»СЋС‡РёС‚Рµ С„Р°Р№Р» " + path_to_file;
                 return tempstr;
             }
 
@@ -56,7 +56,7 @@ namespace tutorialue
     class DeleteEngSymbol
     {
     public:
-        // код для сравнения нескольких переменных с одной, взят с этого сайта в рамках обучения
+        // РєРѕРґ РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ РЅРµСЃРєРѕР»СЊРєРёС… РїРµСЂРµРјРµРЅРЅС‹С… СЃ РѕРґРЅРѕР№, РІР·СЏС‚ СЃ СЌС‚РѕРіРѕ СЃР°Р№С‚Р° РІ СЂР°РјРєР°С… РѕР±СѓС‡РµРЅРёСЏ
         // start other code
         //https://www.geeksforgeeks.org/efficient-ways-to-compare-a-variable-with-multiple-values/
         template <typename T>
@@ -70,7 +70,7 @@ namespace tutorialue
             string withoutEngStr{};
             for (char instr : engstr)
             {
-                // Сравниваем несколько значений. чтобы не использовать char == 'symbol' || и т.д. 
+                // РЎСЂР°РІРЅРёРІР°РµРј РЅРµСЃРєРѕР»СЊРєРѕ Р·РЅР°С‡РµРЅРёР№. С‡С‚РѕР±С‹ РЅРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ char == 'symbol' || Рё С‚.Рґ. 
                 if (!(is_in(instr, { 'D', 'F', 'G','I','J','L','N','Q','R','S','U','V','W','Y','Z' })))
                 {
                     withoutEngStr = withoutEngStr + instr;
@@ -84,7 +84,7 @@ namespace tutorialue
 int main()
 {
     setlocale(LC_ALL, "RUS");
-    std::cout << "Кирилический шрифт английскими буквами кэпсом\n";
+    std::cout << "РљРёСЂРёР»РёС‡РµСЃРєРёР№ С€СЂРёС„С‚ Р°РЅРіР»РёР№СЃРєРёРјРё Р±СѓРєРІР°РјРё РєСЌРїСЃРѕРј\n";
 
     tutorialue::ReadFile readfile("alphabet.txt");
     string withoutEngStr = tutorialue::DeleteEngSymbol::is_in(readfile.OutSymbol());
